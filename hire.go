@@ -17,8 +17,8 @@ func main() {
 	defer db.Close()
 	hcontext.Migrate(db)
 	http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		fmt.Fprintf(w, "Hello World")
+		fmt.Fprint(w, "Hello World")
 	}))
 
-	log.Fatal(http.ListenAndServe("5000"))
+	log.Fatal(http.ListenAndServe("5000", nil))
 }

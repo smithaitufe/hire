@@ -4,7 +4,13 @@ import "github.com/koding/multiconfig"
 
 // Config : configuration struct mapping to config.toml
 type Config struct {
-	DB DB
+	Server Server
+	DB     DB
+}
+
+type Server struct {
+	Host string `toml:"host"`
+	Port string `toml:"port"`
 }
 
 // DB : connection info to the database server
@@ -13,7 +19,7 @@ type DB struct {
 	Port     string `toml:"port"`
 	Host     string `toml:"host"`
 	Name     string `toml:"name"`
-	Username string `toml:"username"`
+	User     string `toml:"user"`
 	Password string `toml:"password"`
 }
 

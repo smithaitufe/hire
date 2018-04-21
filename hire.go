@@ -10,15 +10,13 @@ import (
 
 func main() {
 	config := hcontext.LoadConfig()
-	db, err := hcontext.OpenDB(config)
-	if err != nil {
-		log.Fatal("Cannot connect to database")
-	}
+	db := hcontext.OpenDB(config)
 	defer db.Close()
 	hcontext.Migrate(db)
 	http.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(w, "Hello World")
 	}))
-
-	log.Fatal(http.ListenAndServe("5000", nil))
+	port := fmt.Sprintf(":%s", config.Server.Port)
+	fmt.Println("Server is listening at port", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }

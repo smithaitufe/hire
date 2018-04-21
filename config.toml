@@ -1,7 +1,11 @@
+[server]
+host="localhost"
+port="5000"
+
 [db]
 engine="postgres"
 host="127.0.0.1"
 port="5432"
 name="hire"
-username="postgres"
+user="postgres"
 password="postgres"

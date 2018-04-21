@@ -1,4 +1,21 @@
 version: '3'
+
+volumes:
+  psqldata:
+
 services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5435:5432"
+    volumes:
+      - /psqldata:/var/lib/postgresql/data
+    restart: unless-stopped
   hire:
     build: .
+    volumes:
+      - .:/go/src/github.com/smithaitufe/hire
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
